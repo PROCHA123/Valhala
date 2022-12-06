@@ -6,6 +6,6 @@ public class MoveBackAction{
   Drive mAutoDrive = new Drive();
   
   public void finalMoveBackACtion(){
-    mAutoDrive.outMotoresAuto(-0.6, -0.6, 0.6, 0.6);
+    mAutoDrive.outMotoresAuto(-0.6, 0.6, -0.6, 0.6);
   }
 }

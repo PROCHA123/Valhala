@@ -21,7 +21,7 @@ public class DriverControlBoard implements IDriverControlBoard {
     }
     @Override
     public double getTotalVelocityX(){
-        if(getVelocityX()<getTurn()){
+        if((Math.abs(getVelocityX()  )  )<(Math.abs(getTurn()  )  )  ){
             return getTurn();
         }
         else{

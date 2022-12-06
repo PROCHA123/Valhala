@@ -6,6 +6,6 @@ public class TurnLeftAction{
   Drive mAutoDrive = new Drive();
   
   public void finalTurnLeftACtion(){
-    mAutoDrive.outMotoresAuto(0.6, 0.6, 0.6, 0.6);
+    mAutoDrive.outMotoresAuto(0.6, -0.6, -0.6, 0.6);
   }
 }

@@ -15,7 +15,7 @@ public class AllSystems extends SubsystemBase {
   //INPUTS ------------------------------------------------------------------>
   boolean State = false; 
   boolean Full = false;
-  boolean path = false;
+  boolean path = true;
   
   public AllSystems() {  } //constructor del subsistema
 
@@ -38,13 +38,13 @@ public class AllSystems extends SubsystemBase {
    }
 
    if((path==false)&&(Full==true)){
-    while((path==false)&&(Full==true)){
-    intakeMotor.set(ControlMode.PercentOutput, 1);
-    hopperMotor.set(ControlMode.PercentOutput, 1);
-  }
-    intakeMotor.set(ControlMode.PercentOutput, -1);
-    hopperMotor.set(ControlMode.PercentOutput, 0);
-   }
+            while((path==false)&&(Full==true)){
+            intakeMotor.set(ControlMode.PercentOutput, 1);
+            hopperMotor.set(ControlMode.PercentOutput, 1);
+          }
+          intakeMotor.set(ControlMode.PercentOutput, -1);
+          hopperMotor.set(ControlMode.PercentOutput, 0);
+        }
   }
   public void AutoAllSystems(){
        path = false;

@@ -17,7 +17,6 @@ public class BoxSystem extends SubsystemBase{
     boolean ArmIn = true;
     DigitalInput DLimitSwitch = new DigitalInput(Constants.kDLimitSwitch);
     DigitalInput ULimitSwitch = new DigitalInput(Constants.kULimitSwitch);
-    DigitalInput BLimitSwitch = new DigitalInput(Constants.kBLimitSwitch);
 
     public BoxSystem() {} //constructor del subsistema
 

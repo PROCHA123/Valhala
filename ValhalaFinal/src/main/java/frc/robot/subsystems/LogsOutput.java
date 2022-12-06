@@ -6,6 +6,7 @@ public class LogsOutput extends SubsystemBase {
   //Drive mDrive = new Drive();
   //Intake mIntake = new Intake();  
   BoxSystem mBoxSystem = new BoxSystem();
+  Drive mDrive = new Drive();
   public LogsOutput() {} //constructor del subsistema
 
   //------------------// Funciones del subsistema //-------------------------------//
@@ -13,8 +14,8 @@ public class LogsOutput extends SubsystemBase {
   //funcion principal para cada subsistema
   
   public void MasterLosgsOutputs(){
-    //mDrive.DriveLogsOutput(); //Llamar las funciones de output de cada subsistema
-    mBoxSystem.ShooterLogsOutput();
+    mDrive.DriveLogsOutput(); //Llamar las funciones de output de cada subsistema
+    
   }
     
   @Override

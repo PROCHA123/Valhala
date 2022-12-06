@@ -18,6 +18,7 @@ public class Drive extends SubsystemBase {
   double xSpeed = 0;
   double ySpeed = 0;
   double absMove = 0;  
+  int Front = 1; 
     
   //OUTPUTS ----------------------------------------------------------------->
   double final_left_front_demand = 0;
@@ -41,14 +42,14 @@ public class Drive extends SubsystemBase {
     direction = inDirection;
     absMove = inDirectThrottle*Constants.kDriveSensitivity; //valor de absMove con sensibilidad del control
     if (direction == true){
-      xSpeed = -xSpeed;
-      ySpeed = -ySpeed;
+      Front = -Front;
     }
 
     if(xSpeed>=0){
       leftPwm = ((xSpeed) - ySpeed)*Constants.kDriveSensitivity; //sensibilidad del control agregada
       rightPwm = ((xSpeed) + ySpeed)*Constants.kDriveSensitivity;
     }
+    
     else{
       leftPwm = ((xSpeed) + ySpeed)*Constants.kDriveSensitivity;
       rightPwm = ((xSpeed) - ySpeed)*Constants.kDriveSensitivity;
@@ -57,14 +58,14 @@ public class Drive extends SubsystemBase {
 
     if(absMove != 0){ //funcion que implementa la rampa
       final_right_front_demand = speedTramp(absMove, final_right_front_demand);
-      final_right_back_demand = speedTramp(absMove, final_right_back_demand);
-      final_left_front_demand = speedTramp(-absMove, final_left_front_demand);
+      final_right_back_demand = speedTramp(-absMove, final_right_back_demand);
+      final_left_front_demand = speedTramp( absMove, final_left_front_demand);
       final_left_back_demand = speedTramp(-absMove, final_left_back_demand);     
     }
     else{
       final_right_front_demand = speedTramp(rightPwm, final_right_front_demand);
-      final_right_back_demand = speedTramp(rightPwm, final_right_back_demand);
-      final_left_front_demand = speedTramp(-leftPwm, final_left_front_demand); 
+      final_right_back_demand = speedTramp(-rightPwm, final_right_back_demand);
+      final_left_front_demand = speedTramp(leftPwm, final_left_front_demand); 
       final_left_back_demand = speedTramp(-leftPwm, final_left_back_demand);
     }
 
@@ -73,10 +74,10 @@ public class Drive extends SubsystemBase {
 
   //Funcion que le da salida de motores
   private void outMotores(){
-    mMotor1FrontRight.set(ControlMode.PercentOutput, final_right_front_demand);
-    mMotor2BackRight.set(ControlMode.PercentOutput, final_right_back_demand);
-    mMotor3FrontLeft.set(ControlMode.PercentOutput, final_left_front_demand);
-    mMotor4BackLeft.set(ControlMode.PercentOutput, final_left_back_demand);
+    mMotor1FrontRight.set(ControlMode.PercentOutput, final_right_front_demand*0.5*Front);
+    mMotor2BackRight.set(ControlMode.PercentOutput, final_right_back_demand*0.5*Front);
+    mMotor3FrontLeft.set(ControlMode.PercentOutput, final_left_front_demand*Front);
+    mMotor4BackLeft.set(ControlMode.PercentOutput, final_left_back_demand*Front);
   }
 
   public void outMotoresAuto( double frontRightDemand, double backRightDemand, 
